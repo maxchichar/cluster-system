@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/bwmarrin/discordgo v0.29.0
-	github.com/mattn/go-sqlite3 v1.14.45
+	modernc.org/sqlite v1.51.0
 )
 
 require (
@@ -19,5 +19,4 @@ require (
 	modernc.org/libc v1.72.3 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.51.0 // indirect
 )
