@@ -48,7 +48,6 @@ Each user must enter a valid invite code before gaining access.
 # 📁 PROJECT STRUCTURE
 
 ```
-
 cluster-mvp/
 ├── cmd/bot/               # Discord bot entry
 ├── internal/
@@ -61,7 +60,6 @@ cluster-mvp/
 ├── scripts/              # Code seeding tools
 ├── data/                 # SQLite database
 └── go.mod
-
 ```
 
 ---
