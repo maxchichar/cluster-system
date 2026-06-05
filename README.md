@@ -1,5 +1,3 @@
-# 📘 CLUSTER SYSTEM — README
-
 # 🏛️ CLUSTER SYSTEM (House Verification System)
 
 A lightweight Discord-based verification system built in Go that controls user onboarding using invite codes, House assignments, and automated role allocation.
