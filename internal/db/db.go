@@ -1,10 +1,10 @@
+
 package db
 
 import (
 	"database/sql"
-	"log"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 var DB *sql.DB
@@ -12,16 +12,13 @@ var DB *sql.DB
 func InitDB() {
 	var err error
 
-	DB, err = sql.Open("sqlite3", "./data/cluster.db")
+	DB, err = sql.Open("sqlite", "./data/cluster.db")
 	if err != nil {
-		log.Fatal("DB connection failed:", err)
+		panic(err)
 	}
 
-	if err = DB.Ping(); err != nil {
-		log.Fatal("DB ping failed:", err)
+	err = DB.Ping()
+	if err != nil {
+		panic(err)
 	}
-
-	log.Println("Database connected")
-
-	InitSchema()
 }
