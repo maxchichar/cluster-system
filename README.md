@@ -1,6 +1,5 @@
 # 📘 CLUSTER SYSTEM — README
 
-```md
 # 🏛️ CLUSTER SYSTEM (House Verification System)
 
 A lightweight Discord-based verification system built in Go that controls user onboarding using invite codes, House assignments, and automated role allocation.
@@ -48,7 +47,7 @@ Each user must enter a valid invite code before gaining access.
 # 📁 PROJECT STRUCTURE
 
 ```
-cluster-mvp/
+cluster-system/
 ├── cmd/bot/               # Discord bot entry
 ├── internal/
 │   ├── config/            # Config loader
@@ -62,7 +61,6 @@ cluster-mvp/
 └── go.mod
 ```
 
----
 
 # 🗄️ DATABASE SCHEMA
 
@@ -87,7 +85,7 @@ cluster-mvp/
 
 ```
 
-HOUSE-TABLE-SLOT-RANDOM
+HOUSE-TABLE-SEAT-RANDOM
 
 ```
 
