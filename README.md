@@ -66,7 +66,7 @@ cluster-system/
 - code (unique)
 - house (KER/COM/RNT/ALG)
 - table_id
-- slot (S1–S4)
+- seat (S1–S4)
 - used (0/1)
 - used_by
 
@@ -74,7 +74,7 @@ cluster-system/
 - discord_id
 - house
 - table_id
-- slot
+- seat
 - verified_at
 
 ---
