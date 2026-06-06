@@ -31,14 +31,36 @@ func interactionHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	roleID := getRoleID(result.House)
 
 	if roleID != "" {
-		_ = s.GuildMemberRoleAdd(i.GuildID, i.Member.User.ID, roleID)
 
-		// Replace with your real Recruit role ID
-		_ = s.GuildMemberRoleRemove(
-			i.GuildID,
-			i.Member.User.ID,
-			"1512493065166655700",
+	err = s.GuildMemberRoleAdd(
+		i.GuildID,
+		i.Member.User.ID,
+		roleID,
+	)
+
+	if err != nil {
+		respond(
+			s,
+			i,
+			"❌ Failed to assign house role: "+err.Error(),
 		)
+		return
+	}
+
+	err = s.GuildMemberRoleRemove(
+		i.GuildID,
+		i.Member.User.ID,
+		"1512493065166655700", // Recruit role
+	)
+
+	if err != nil {
+		respond(
+			s,
+			i,
+			"⚠️ House assigned but failed to remove Recruit role: "+err.Error(),
+		)
+		return
+		}
 	}
 
 	houseNames := map[string]string{
