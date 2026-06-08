@@ -7,6 +7,8 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
+const HouseArrivalChannelID = "1513488280631644220"
+
 func interactionHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
 	if i.Type != discordgo.InteractionApplicationCommand {
@@ -32,34 +34,34 @@ func interactionHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
 	if roleID != "" {
 
-	err = s.GuildMemberRoleAdd(
-		i.GuildID,
-		i.Member.User.ID,
-		roleID,
-	)
-
-	if err != nil {
-		respond(
-			s,
-			i,
-			"❌ Failed to assign house role: "+err.Error(),
+		err = s.GuildMemberRoleAdd(
+			i.GuildID,
+			i.Member.User.ID,
+			roleID,
 		)
-		return
-	}
 
-	err = s.GuildMemberRoleRemove(
-		i.GuildID,
-		i.Member.User.ID,
-		"1512493065166655700", // Recruit role
-	)
+		if err != nil {
+			respond(
+				s,
+				i,
+				"❌ Failed to assign house role: "+err.Error(),
+			)
+			return
+		}
 
-	if err != nil {
-		respond(
-			s,
-			i,
-			"⚠️ House assigned but failed to remove Recruit role: "+err.Error(),
+		err = s.GuildMemberRoleRemove(
+			i.GuildID,
+			i.Member.User.ID,
+			"1512493065166655700", // Recruit role
 		)
-		return
+
+		if err != nil {
+			respond(
+				s,
+				i,
+				"⚠️ House assigned but failed to remove Recruit role: "+err.Error(),
+			)
+			return
 		}
 	}
 
@@ -71,6 +73,18 @@ func interactionHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	}
 
 	houseName := houseNames[result.House]
+
+	// House Arrival Message
+	arrivalMessage := fmt.Sprintf(
+		"🎉 Welcome <@%s> to House %s!\n\nPlease give them a warm welcome.",
+		i.Member.User.ID,
+		houseName,
+	)
+
+	_, _ = s.ChannelMessageSend(
+		HouseArrivalChannelID,
+		arrivalMessage,
+	)
 
 	message := fmt.Sprintf(
 		"✅ Verification Successful\n\nHouse: %s\nTable: %d\nSeat: %s\n\nWelcome to House %s.",
