@@ -75,15 +75,86 @@ func interactionHandler(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	houseName := houseNames[result.House]
 
 	// House Arrival Message
-	arrivalMessage := fmt.Sprintf(
-		"🎉 Welcome <@%s> to House %s!\n\nPlease give them a warm welcome.",
+	var arrivalMessage string
+
+	switch result.House {
+
+	case "KER":
+	arrivalMessage = fmt.Sprintf(
+		"━━━━━━━━━━━━━━━━━━━━━━\n\n"+
+			"🔷 HOUSE KERNEL\n\n"+
+			"Welcome <@%s>.\n\n"+
+			"You have been assigned to the Core of CLUSTER ASCENSION.\n\n"+
+			"House Kernel values leadership, discipline, stability, and responsibility.\n\n"+
+			"📜 Motto:\n"+
+			"\"Strength through Structure.\"\n\n"+
+			"⚔️ Table: %d\n"+
+			"📍 Seat: %s\n\n"+
+			"Welcome to the Core Ascendant.\n\n"+
+			"━━━━━━━━━━━━━━━━━━━━━━",
 		i.Member.User.ID,
-		houseName,
+		result.TableID,
+		result.Slot,
 	)
 
+	case "COM":
+	arrivalMessage = fmt.Sprintf(
+		"━━━━━━━━━━━━━━━━━━━━━━\n\n"+
+			"⚙️ HOUSE COMPILER\n\n"+
+			"Welcome <@%s>.\n\n"+
+			"You have been assigned to the Forge of CLUSTER ASCENSION.\n\n"+
+			"House Compiler transforms ideas into reality through creativity and execution.\n\n"+
+			"📜 Motto:\n"+
+			"\"Ideas Become Reality Here.\"\n\n"+
+			"⚔️ Table: %d\n"+
+			"📍 Seat: %s\n\n"+
+			"Welcome to the Forge Ascendant.\n\n"+
+			"━━━━━━━━━━━━━━━━━━━━━━",
+		i.Member.User.ID,
+		result.TableID,
+		result.Slot,
+	)
+
+	case "RNT":
+	arrivalMessage = fmt.Sprintf(
+		"━━━━━━━━━━━━━━━━━━━━━━\n\n"+
+			"🚀 HOUSE RUNTIME\n\n"+
+			"Welcome <@%s>.\n\n"+
+			"You have been assigned to the Engine of CLUSTER ASCENSION.\n\n"+
+			"House Runtime thrives on action, adaptability, and performance.\n\n"+
+			"📜 Motto:\n"+
+			"\"Performance Defines Potential.\"\n\n"+
+			"⚔️ Table: %d\n"+
+			"📍 Seat: %s\n\n"+
+			"Welcome to the Engine Ascendant.\n\n"+
+			"━━━━━━━━━━━━━━━━━━━━━━",
+		i.Member.User.ID,
+		result.TableID,
+		result.Slot,
+	)
+
+	case "ALG":
+	arrivalMessage = fmt.Sprintf(
+		"━━━━━━━━━━━━━━━━━━━━━━\n\n"+
+			"🧠 HOUSE ALGORITHM\n\n"+
+			"Welcome <@%s>.\n\n"+
+			"You have been assigned to the Mind of CLUSTER ASCENSION.\n\n"+
+			"House Algorithm excels in strategy, logic, and problem solving.\n\n"+
+			"📜 Motto:\n"+
+			"\"Wisdom Creates Possibility.\"\n\n"+
+			"⚔️ Table: %d\n"+
+			"📍 Seat: %s\n\n"+
+			"Welcome to the Mind Ascendant.\n\n"+
+			"━━━━━━━━━━━━━━━━━━━━━━",
+		i.Member.User.ID,
+		result.TableID,
+		result.Slot,
+	)
+	}
+
 	_, _ = s.ChannelMessageSend(
-		HouseArrivalChannelID,
-		arrivalMessage,
+	HouseArrivalChannelID,
+	arrivalMessage,
 	)
 
 	message := fmt.Sprintf(
